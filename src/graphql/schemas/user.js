@@ -4,8 +4,9 @@ exports.User = `
         email: String!
         username: String!
         password: String
-        firstname: String
-        lastname: String
+        firstname: String!
+        lastname: String!
+        roomsOwned: [Room!]!
     }
 `;
 
@@ -14,8 +15,8 @@ exports.UserInputData = `
         email: String!
         username: String!
         password: String
-        firstname: String
-        lastname: String
+        firstname: String!
+        lastname: String!
     }
 `;
 

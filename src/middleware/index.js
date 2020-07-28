@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { graphqlHTTP } = require("express-graphql");
+const expressPlayground = require("graphql-playground-middleware-express")
+  .default;
 const graphqlSchema = require("../graphql/schema");
 const graphqlResolver = require("../graphql/resolvers");
 

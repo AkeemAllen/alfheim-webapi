@@ -13,8 +13,10 @@ module.exports = {
       .hash(userInput.password, 12)
       .then((hashedPassword) => {
         const user = new User({
-          name: userInput.name,
+          username: userInput.username,
           email: userInput.email,
+          firstname: userInput.firstname,
+          lastname: userInput.lastname,
           password: hashedPassword,
         });
         return user.save();
@@ -44,20 +46,24 @@ module.exports = {
     return { userId: user.id, token: token, tokenExpiration: 1 };
   },
   allUsers: async (req) => {
-    const result = await User.find();
+    const result = await User.find().populate("roomsOwned");
     result.forEach((element) => {
       element.password = null;
     });
     return result;
   },
   getUserByEmail: async ({ email }, req) => {
-    return await User.findOne({ email: email }).then((result) => {
-      return { ...result._doc, password: null, id: result.id };
-    });
+    return await User.findOne({ email: email })
+      .populate("roomsOwned")
+      .then((result) => {
+        return { ...result._doc, password: null, id: result.id };
+      });
   },
   getUserById: async ({ id }, req) => {
-    return await User.findById(id).then((result) => {
-      return { ...result._doc, password: null, id: result.id };
-    });
+    return await User.findById(id)
+      .populate("roomsOwned")
+      .then((result) => {
+        return { ...result._doc, password: null, id: result.id };
+      });
   },
 };
