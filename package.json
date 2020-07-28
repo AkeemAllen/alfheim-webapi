@@ -1,0 +1,25 @@
+{
+  "name": "project-alfheim-webapi",
+  "version": "1.0.0",
+  "description": "Web Api for project alfheim",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon src/app.js"
+  },
+  "author": "Akeem Allen",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-graphql": "^0.11.0",
+    "graphql": "^15.3.0",
+    "graphql-playground": "^1.3.17",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.19",
+    "mongoose": "^5.9.26",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.4"
+  }
+}
