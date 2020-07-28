@@ -3,7 +3,6 @@ const User = require("../../models/User");
 
 module.exports = {
   createRoom: async ({ input }, req) => {
-    console.log(req.isAuth);
     if (!req.isAuth) {
       throw new Error("Unauthorized");
     }
@@ -32,9 +31,9 @@ module.exports = {
       });
   },
   allRooms: async () => {
-    return await Room.find().populate("owner");
+    return await Room.find().populate("owner").populate("location");
   },
   getRoomById: async ({ id }, req) => {
-    return await Room.findById(id).populate("owner");
+    return await Room.findById(id).populate("owner").populate("location");
   },
 };

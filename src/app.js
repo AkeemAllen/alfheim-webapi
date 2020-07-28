@@ -29,7 +29,7 @@ middleware.setUpGraphql(app);
 const server = http.createServer(app);
 
 setImmediate(() => {
-  server.listen(process.env.PORT || 8081, () => {
+  server.listen(process.env.PORT, () => {
     console.log(`Listening on port ${process.env.PORT}`);
   });
 });

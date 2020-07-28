@@ -1,24 +1,31 @@
 const { buildSchema } = require("graphql");
 
-const userSchemas = require("./schemas/user");
-const roomSchemas = require("./schemas/room");
+const userSchema = require("./schemas/user");
+const roomSchema = require("./schemas/room");
+const locationSchema = require("./schemas/location");
 
 module.exports = buildSchema(`
-    ${userSchemas.User}
-    ${userSchemas.UserInputData}
-    ${userSchemas.AuthData}
+    ${userSchema.User}
+    ${userSchema.UserInputData}
+    ${userSchema.AuthData}
+    
+    ${locationSchema.Location}
+    ${locationSchema.LocationInputData}
+    
+    ${roomSchema.Room}
+    ${roomSchema.RoomInputData}
 
-    ${roomSchemas.Room}
-    ${roomSchemas.RoomInputData}
 
     type RootQuery {
-        ${userSchemas.UserQueries}
-        ${roomSchemas.RoomQueries}
+        ${userSchema.UserQueries}
+        ${roomSchema.RoomQueries}
+        ${locationSchema.LocationQueries}
     }
 
     type RootMutation {
-        ${userSchemas.UserMutations}
-        ${roomSchemas.RoomMutations}
+        ${userSchema.UserMutations}
+        ${roomSchema.RoomMutations}
+        ${locationSchema.LocationMutations}
     }
 
     schema {

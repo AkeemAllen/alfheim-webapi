@@ -10,9 +10,13 @@ const locationSchema = new Schema({
     type: String,
     required: true,
   },
-  town_or_city: {
+  town_city: {
     type: String,
     required: true,
+  },
+  room: {
+    type: Schema.Types.ObjectId,
+    ref: "Room",
   },
 });
 

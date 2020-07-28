@@ -18,13 +18,11 @@ const roomSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  location: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Location",
-    },
-  ],
-  photo: [
+  location: {
+    type: Schema.Types.ObjectId,
+    ref: "Location",
+  },
+  photos: [
     {
       type: Schema.Types.ObjectId,
       ref: "Image",

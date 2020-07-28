@@ -5,6 +5,7 @@ exports.Room = `
         price: Int!
         gender: String!
         owner: User!
+        location: Location!
     }
 `;
 
@@ -19,6 +20,7 @@ exports.RoomInputData = `
 exports.RoomQueries = `
     allRooms: [Room!]!
     getRoomById(id:ID!): Room!
+    getRoomByOwner(ownerId: ID!): Room!
 `;
 
 exports.RoomMutations = `
