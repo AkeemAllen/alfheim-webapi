@@ -1,21 +1,24 @@
 const Room = require("../../models/Room");
 const User = require("../../models/User");
-const user = require("./user");
 
 module.exports = {
-  createRoom: async ({ input }) => {
+  createRoom: async ({ input }, req) => {
+    console.log(req.isAuth);
+    if (!req.isAuth) {
+      throw new Error("Unauthorized");
+    }
     const room = new Room({
       occupancy: input.occupancy,
       gender: input.gender,
       price: input.price,
-      owner: "5f1f852f08b6751eaddb81d1",
+      owner: req.userId,
     });
     let createdRoom;
     return await room
       .save()
       .then((result) => {
         createdRoom = { ...result._doc, id: result._id };
-        return User.findById("5f1f852f08b6751eaddb81d1");
+        return User.findById(req.userId);
       })
       .then((user) => {
         if (!user) {

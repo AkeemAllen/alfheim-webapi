@@ -1,6 +1,7 @@
 const express = require("express");
 const http = require("http");
 const middleware = require("./middleware/index");
+
 require("dotenv/config");
 
 const app = express();
@@ -19,6 +20,8 @@ middleware.setHeaders(app);
 
 // connect to mongo database
 middleware.mongoConnection();
+
+middleware.authentication(app);
 
 // Graphql Setup
 middleware.setUpGraphql(app);

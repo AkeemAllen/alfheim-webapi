@@ -7,6 +7,7 @@ const expressPlayground = require("graphql-playground-middleware-express")
   .default;
 const graphqlSchema = require("../graphql/schema");
 const graphqlResolver = require("../graphql/resolvers");
+const isAuth = require("./is-auth");
 
 exports.useMorgan = (app) => {
   app.use(morgan("dev"));
@@ -61,4 +62,8 @@ exports.setUpGraphql = (app) => {
       },
     })
   );
+};
+
+exports.authentication = (app) => {
+  app.use(isAuth);
 };
