@@ -18,9 +18,17 @@ const roomSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  location: {
-    type: Schema.Types.ObjectId,
-    ref: "Location",
+  street: {
+    type: String,
+    required: false,
+  },
+  town_city: {
+    type: String,
+    required: false,
+  },
+  parish: {
+    type: String,
+    required: false,
   },
   photos: [
     {

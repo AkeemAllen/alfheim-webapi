@@ -1,15 +1,20 @@
 const Room = require("../../models/Room");
 const User = require("../../models/User");
+const Location = require("../../models/Location");
 
 module.exports = {
   createRoom: async ({ input }, req) => {
     if (!req.isAuth) {
       throw new Error("Unauthorized");
     }
+
     const room = new Room({
       occupancy: input.occupancy,
       gender: input.gender,
       price: input.price,
+      street: input.street,
+      town_city: input.town_city,
+      parish: input.parish,
       owner: req.userId,
     });
     let createdRoom;

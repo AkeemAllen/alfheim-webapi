@@ -4,7 +4,6 @@ exports.Location = `
         street: String!
         town_city:String!
         parish: String!
-        room: Room!
     }
 `;
 
@@ -13,7 +12,6 @@ exports.LocationInputData = `
         street: String!
         town_city:String!
         parish: String!
-        room: ID!
     }
 `;
 

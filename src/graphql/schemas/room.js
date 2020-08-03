@@ -5,7 +5,9 @@ exports.Room = `
         price: Int!
         gender: String!
         owner: User!
-        location: Location!
+        street: String!
+        town_city: String!,
+        parish: String!
     }
 `;
 
@@ -14,6 +16,9 @@ exports.RoomInputData = `
         occupancy: String!
         price: Int!
         gender: String!
+        street: String!
+        town_city: String!,
+        parish: String!
     }
 `;
 

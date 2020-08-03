@@ -22,6 +22,7 @@ module.exports = {
           email: userInput.email,
           firstname: userInput.firstname,
           lastname: userInput.lastname,
+          contact: userInput.contact,
           password: hashedPassword,
         });
         return user.save();
