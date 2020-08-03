@@ -21,6 +21,10 @@ middleware.setHeaders(app);
 // connect to mongo database
 middleware.mongoConnection();
 
+// Email Verification
+middleware.verification(app);
+
+// token authentication
 middleware.authentication(app);
 
 // Graphql Setup

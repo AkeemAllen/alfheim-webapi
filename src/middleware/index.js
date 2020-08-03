@@ -8,6 +8,9 @@ const expressPlayground = require("graphql-playground-middleware-express")
 const graphqlSchema = require("../graphql/schema");
 const graphqlResolver = require("../graphql/resolvers");
 const isAuth = require("./is-auth");
+const verify = require("./userVerification");
+const userVerificaiton = require("../rest routes/verification");
+const router = require("express").Router();
 
 exports.useMorgan = (app) => {
   app.use(morgan("dev"));
@@ -41,6 +44,10 @@ exports.useCors = (app) => {
 
 exports.useBodyParser = (app) => {
   app.use(bodyParser.json());
+};
+
+exports.verification = (app) => {
+  app.use("/confirmation", verify);
 };
 
 exports.setUpGraphql = (app) => {

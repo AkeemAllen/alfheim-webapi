@@ -10,17 +10,22 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  isVerified: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
   password: {
     type: String,
     required: true,
   },
   firstname: {
     type: String,
-    required: true,
+    required: false,
   },
   lastname: {
     type: String,
-    required: true,
+    required: false,
   },
   roomsOwned: [
     {
@@ -28,12 +33,10 @@ const userSchema = new Schema({
       ref: "Room",
     },
   ],
-  contacts: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Contact",
-    },
-  ],
+  contact: {
+    type: String,
+    required: false,
+  },
 });
 
 module.exports = mongoose.model("User", userSchema);

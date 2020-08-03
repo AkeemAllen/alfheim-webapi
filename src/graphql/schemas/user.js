@@ -2,21 +2,23 @@ exports.User = `
     type User {
         id: ID!
         email: String!
-        username: String!
+        username: String
         password: String
-        firstname: String!
-        lastname: String!
-        roomsOwned: [Room!]!
+        firstname: String
+        lastname: String
+        roomsOwned: [Room!]
+        contact: String
     }
 `;
 
 exports.UserInputData = `
     input UserInputData {
         email: String!
-        username: String!
+        username: String
         password: String
-        firstname: String!
-        lastname: String!
+        firstname: String
+        lastname: String
+        contact: String
     }
 `;
 
@@ -37,4 +39,5 @@ exports.UserQueries = `
 
 exports.UserMutations = `
     createUser(userInput:UserInputData!): User!
+    updateUser(userInput:UserInputData): User!
 `;

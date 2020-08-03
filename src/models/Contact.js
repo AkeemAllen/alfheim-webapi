@@ -6,6 +6,10 @@ const contactSchema = new Schema({
     type: Number,
     required: true,
   },
+  user: {
+    type: Schema.Types.ObjectId,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Contact", contactSchema);
