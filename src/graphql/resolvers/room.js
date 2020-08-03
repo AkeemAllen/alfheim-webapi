@@ -1,6 +1,5 @@
 const Room = require("../../models/Room");
 const User = require("../../models/User");
-const Location = require("../../models/Location");
 
 module.exports = {
   createRoom: async ({ input }, req) => {
@@ -17,7 +16,9 @@ module.exports = {
       parish: input.parish,
       owner: req.userId,
     });
+
     let createdRoom;
+
     return await room
       .save()
       .then((result) => {
