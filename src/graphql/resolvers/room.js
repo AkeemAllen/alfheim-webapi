@@ -36,6 +36,37 @@ module.exports = {
         return createdRoom;
       });
   },
+  updateRoom: async ({ input, id }) => {
+    const room = await Room.findById(id);
+    if (!room) {
+      throw new Error("Room Not Found");
+    }
+
+    try {
+      (input.occupancy !== null) | undefined | ""
+        ? (room.occupancy = input.occupancy)
+        : null;
+      (input.gender !== null) | undefined | ""
+        ? (room.gender = input.gender)
+        : null;
+      (input.price !== null) | undefined | ""
+        ? (room.price = input.price)
+        : null;
+      (input.street !== null) | undefined | ""
+        ? (room.street = input.street)
+        : null;
+      (input.town_city !== null) | undefined | ""
+        ? (room.town_city = input.town_city)
+        : null;
+      (input.parish !== null) | undefined | ""
+        ? (room.parish = input.parish)
+        : null;
+
+      return room.save();
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
   updateAvailability: async ({ id, currentAvailability }) => {
     const room = await Room.findById(id);
     if (!room) {

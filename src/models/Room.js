@@ -4,15 +4,15 @@ const Schema = mongoose.Schema;
 const roomSchema = new Schema({
   occupancy: {
     type: String,
-    required: true,
+    required: false,
   },
   price: {
     type: Number,
-    required: true,
+    required: false,
   },
   gender: {
     type: String,
-    required: true,
+    required: false,
   },
   owner: {
     type: Schema.Types.ObjectId,
