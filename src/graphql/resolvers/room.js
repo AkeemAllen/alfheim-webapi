@@ -36,6 +36,30 @@ module.exports = {
         return createdRoom;
       });
   },
+  updateAvailability: async ({ id, currentAvailability }) => {
+    const room = await Room.findById(id);
+    if (!room) {
+      throw new Error("Room Not Found");
+    }
+    try {
+      room.isAvailable = !currentAvailability;
+      return room.save();
+    } catch (error) {
+      throw new Error("Could not be updated");
+    }
+  },
+  updateVisibility: async ({ id, currentVisibility }) => {
+    const room = await Room.findById(id);
+    if (!room) {
+      throw new Error("Room Not Found");
+    }
+    try {
+      room.isVisible = !currentVisibility;
+      return room.save();
+    } catch (error) {
+      throw new Error("Could not be updated");
+    }
+  },
   allRooms: async () => {
     return await Room.find().populate("owner").populate("location");
   },

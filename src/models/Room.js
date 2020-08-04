@@ -22,6 +22,16 @@ const roomSchema = new Schema({
     type: String,
     required: false,
   },
+  isAvailable: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  isVisible: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
   town_city: {
     type: String,
     required: false,

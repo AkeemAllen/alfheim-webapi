@@ -8,6 +8,8 @@ exports.Room = `
         street: String!
         town_city: String!,
         parish: String!
+        isAvailable: Boolean!
+        isVisible: Boolean!
     }
 `;
 
@@ -30,4 +32,7 @@ exports.RoomQueries = `
 
 exports.RoomMutations = `
     createRoom(input: RoomInputData): Room!
+    updateRoom(input: RoomInputData): Room
+    updateAvailability(id: ID!, isAvailable: Boolean!): Room
+    updateVisibility(id: ID!, isVisible: Boolean!): Room
 `;
