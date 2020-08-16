@@ -95,6 +95,11 @@ module.exports = {
     return await Room.find().populate("owner").populate("location");
   },
   getRoomById: async ({ id }, req) => {
-    return await Room.findById(id).populate("owner").populate("location");
+    return await Room.findById(id).populate("owner");
+  },
+  getRoomByOwner: async ({ ownerId }, req) => {
+    const rooms = await Room.find({ owner: ownerId }).populate("owner");
+    console.log(rooms);
+    return rooms;
   },
 };

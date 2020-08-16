@@ -41,6 +41,7 @@ const roomSchema = new Schema({
     required: false,
   },
   amenities: [String],
+  rules: [String],
   photos: [
     {
       type: Schema.Types.ObjectId,

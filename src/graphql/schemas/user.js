@@ -38,6 +38,6 @@ exports.UserQueries = `
 `;
 
 exports.UserMutations = `
-    createUser(userInput:UserInputData!): User!
+    createUser(userInput:UserInputData!): User
     updateUser(userInput:UserInputData): User!
 `;
