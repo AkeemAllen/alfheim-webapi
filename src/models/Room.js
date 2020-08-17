@@ -4,15 +4,15 @@ const Schema = mongoose.Schema;
 const roomSchema = new Schema({
   occupancy: {
     type: String,
-    required: true,
+    required: false,
   },
   price: {
     type: Number,
-    required: true,
+    required: false,
   },
   gender: {
     type: String,
-    required: true,
+    required: false,
   },
   owner: {
     type: Schema.Types.ObjectId,
@@ -21,6 +21,16 @@ const roomSchema = new Schema({
   street: {
     type: String,
     required: false,
+  },
+  isAvailable: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  isVisible: {
+    type: Boolean,
+    required: true,
+    default: false,
   },
   town_city: {
     type: String,
@@ -31,6 +41,7 @@ const roomSchema = new Schema({
     required: false,
   },
   amenities: [String],
+  rules: [String],
   photos: [
     {
       type: Schema.Types.ObjectId,
