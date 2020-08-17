@@ -10,6 +10,8 @@ exports.Room = `
         parish: String!
         isAvailable: Boolean!
         isVisible: Boolean!
+        amenities: [String!]!
+        rules: [String!]!
     }
 `;
 
@@ -21,6 +23,10 @@ exports.RoomInputData = `
         street: String
         town_city: String
         parish: String
+        isAvailable: Boolean
+        isVisible: Boolean
+        amenities: [String]
+        rules: [String]
     }
 `;
 

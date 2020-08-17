@@ -15,6 +15,8 @@ module.exports = {
       town_city: input.town_city,
       parish: input.parish,
       owner: req.userId,
+      amenities: input.amenities,
+      rules: input.rules,
     });
 
     let createdRoom;
@@ -43,24 +45,16 @@ module.exports = {
     }
 
     try {
-      (input.occupancy !== null) | undefined | ""
-        ? (room.occupancy = input.occupancy)
+      input.occupancy !== undefined ? (room.occupancy = input.occupancy) : null;
+      input.gender !== undefined ? (room.gender = input.gender) : null;
+      input.price !== undefined ? (room.price = input.price) : null;
+      input.street !== undefined ? (room.street = input.street) : null;
+      input.town_city !== undefined ? (room.town_city = input.town_city) : null;
+      input.parish !== undefined ? (room.parish = input.parish) : null;
+      input.isAvailable !== undefined
+        ? (room.isAvailable = input.isAvailable)
         : null;
-      (input.gender !== null) | undefined | ""
-        ? (room.gender = input.gender)
-        : null;
-      (input.price !== null) | undefined | ""
-        ? (room.price = input.price)
-        : null;
-      (input.street !== null) | undefined | ""
-        ? (room.street = input.street)
-        : null;
-      (input.town_city !== null) | undefined | ""
-        ? (room.town_city = input.town_city)
-        : null;
-      (input.parish !== null) | undefined | ""
-        ? (room.parish = input.parish)
-        : null;
+      input.isVisible !== undefined ? (room.isVisible = input.isVisible) : null;
 
       return room.save();
     } catch (error) {
@@ -99,7 +93,6 @@ module.exports = {
   },
   getRoomByOwner: async ({ ownerId }, req) => {
     const rooms = await Room.find({ owner: ownerId }).populate("owner");
-    console.log(rooms);
     return rooms;
   },
 };
