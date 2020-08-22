@@ -17,6 +17,7 @@ module.exports = {
       owner: req.userId,
       amenities: input.amenities,
       rules: input.rules,
+      personalID: input.personalID,
     });
 
     let createdRoom;
@@ -55,6 +56,9 @@ module.exports = {
         ? (room.isAvailable = input.isAvailable)
         : null;
       input.isVisible !== undefined ? (room.isVisible = input.isVisible) : null;
+      input.personalID !== undefined
+        ? (room.personalID = input.personalID)
+        : null;
 
       return room.save();
     } catch (error) {

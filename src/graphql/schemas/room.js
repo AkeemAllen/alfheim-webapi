@@ -12,6 +12,7 @@ exports.Room = `
         isVisible: Boolean!
         amenities: [String!]!
         rules: [String!]!
+        personalID: String!
     }
 `;
 
@@ -27,6 +28,7 @@ exports.RoomInputData = `
         isVisible: Boolean
         amenities: [String]
         rules: [String]
+        personalID: String
     }
 `;
 

@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const roomSchema = new Schema({
+  personalID: {
+    type: String,
+    required: true,
+  },
   occupancy: {
     type: String,
     required: false,

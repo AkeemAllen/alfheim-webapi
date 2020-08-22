@@ -21,6 +21,9 @@ middleware.setHeaders(app);
 // connect to mongo database
 middleware.mongoConnection();
 
+// image upload setup
+middleware.imageUpload(app);
+
 // Email Verification
 middleware.verification(app);
 
