@@ -99,4 +99,18 @@ module.exports = {
     const rooms = await Room.find({ owner: ownerId }).populate("owner");
     return rooms;
   },
+  addRule: async ({ id, rule }) => {
+    const room = await Room.findById(id);
+    room.rules.push(rule);
+    room.save().then((result) => {
+      return result;
+    });
+  },
+  addAmenity: async ({ id, amenity }) => {
+    const room = await Room.findById(id);
+    room.amenities.push(amenity);
+    room.save().then((result) => {
+      return result;
+    });
+  },
 };

@@ -43,4 +43,6 @@ exports.RoomMutations = `
     updateRoom(input: RoomInputData, id: ID!): Room
     updateAvailability(id: ID!, isAvailable: Boolean!): Room
     updateVisibility(id: ID!, isVisible: Boolean!): Room
+    addRule(id: ID!, rule: String!): Room
+    addAmenity(id: ID!, amenity: String!): Room
 `;
