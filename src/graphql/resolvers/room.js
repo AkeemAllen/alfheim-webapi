@@ -113,4 +113,26 @@ module.exports = {
       return result;
     });
   },
+  deleteRoom: async ({ id }) => {
+    const room = await Room.findByIdAndDelete(id);
+    room.save().then((result) => {
+      return result;
+    });
+  },
+  deleteSingleRule: async ({ id, ruleToDelete }) => {
+    const room = await Room.findById(id);
+    room.rules = room.rules.filter((rule) => rule !== ruleToDelete);
+    room.save().then((result) => {
+      return result;
+    });
+  },
+  deleteSingleAmenity: async ({ id, amenityToDelete }) => {
+    const room = await Room.findById(id);
+    room.amenities = room.amenities.filter(
+      (amenity) => amenity !== amenityToDelete
+    );
+    room.save().then((result) => {
+      return result;
+    });
+  },
 };

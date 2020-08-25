@@ -45,4 +45,7 @@ exports.RoomMutations = `
     updateVisibility(id: ID!, isVisible: Boolean!): Room
     addRule(id: ID!, rule: String!): Room
     addAmenity(id: ID!, amenity: String!): Room
+    deleteRoom(id: ID!): Room
+    deleteSingleRule(id: ID!, ruleToDelete: String!): Room
+    deleteSingleAmenity(id: ID!, amenityToDelete: String!): Room
 `;
