@@ -46,12 +46,11 @@ const roomSchema = new Schema({
   },
   amenities: [String],
   rules: [String],
-  photos: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Image",
-    },
-  ],
+  image: {
+    type: String,
+    required: false,
+    default: null,
+  },
 });
 
 module.exports = mongoose.model("Room", roomSchema);

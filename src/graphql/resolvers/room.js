@@ -60,6 +60,7 @@ module.exports = {
         ? (room.personalID = input.personalID)
         : null;
       input.rules !== undefined ? (room.rules = input.rules) : null;
+      input.image !== undefined ? (room.image = input.image) : null;
 
       return room.save();
     } catch (error) {

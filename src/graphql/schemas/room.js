@@ -13,6 +13,7 @@ exports.Room = `
         amenities: [String!]!
         rules: [String!]!
         personalID: String!
+        image: String
     }
 `;
 
@@ -29,6 +30,7 @@ exports.RoomInputData = `
         amenities: [String]
         rules: [String]
         personalID: String
+        image: String
     }
 `;
 
