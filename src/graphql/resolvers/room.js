@@ -59,6 +59,7 @@ module.exports = {
       input.personalID !== undefined
         ? (room.personalID = input.personalID)
         : null;
+      input.rules !== undefined ? (room.rules = input.rules) : null;
 
       return room.save();
     } catch (error) {
@@ -121,8 +122,11 @@ module.exports = {
   },
   deleteSingleRule: async ({ id, ruleToDelete }) => {
     const room = await Room.findById(id);
+    console.log(ruleToDelete);
     room.rules = room.rules.filter((rule) => rule !== ruleToDelete);
+
     room.save().then((result) => {
+      console.log(result);
       return result;
     });
   },
