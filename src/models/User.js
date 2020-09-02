@@ -27,6 +27,11 @@ const userSchema = new Schema({
     type: String,
     required: false,
   },
+  firstTimeLogIn: {
+    type: Boolean,
+    required: false,
+    default: true,
+  },
   roomsOwned: [
     {
       type: Schema.Types.ObjectId,

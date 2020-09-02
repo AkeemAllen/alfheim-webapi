@@ -27,6 +27,7 @@ exports.AuthData = `
         userId: ID!
         token: String!
         tokenExpiration: Int!
+        firstTimeLogIn: Boolean!
     }
 `;
 
