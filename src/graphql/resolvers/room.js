@@ -39,7 +39,10 @@ module.exports = {
         return createdRoom;
       });
   },
-  updateRoom: async ({ input, id }) => {
+  updateRoom: async ({ input, id }, req) => {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized");
+    }
     const room = await Room.findById(id);
     if (!room) {
       throw new Error("Room Not Found");
@@ -67,7 +70,10 @@ module.exports = {
       throw new Error(error);
     }
   },
-  updateAvailability: async ({ id, currentAvailability }) => {
+  updateAvailability: async ({ id, currentAvailability }, req) => {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized");
+    }
     const room = await Room.findById(id);
     if (!room) {
       throw new Error("Room Not Found");
@@ -79,7 +85,10 @@ module.exports = {
       throw new Error("Could not be updated");
     }
   },
-  updateVisibility: async ({ id, currentVisibility }) => {
+  updateVisibility: async ({ id, currentVisibility }, req) => {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized");
+    }
     const room = await Room.findById(id);
     if (!room) {
       throw new Error("Room Not Found");
@@ -101,27 +110,39 @@ module.exports = {
     const rooms = await Room.find({ owner: ownerId }).populate("owner");
     return rooms;
   },
-  addRule: async ({ id, rule }) => {
+  addRule: async ({ id, rule }, req) => {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized");
+    }
     const room = await Room.findById(id);
     room.rules.push(rule);
     room.save().then((result) => {
       return result;
     });
   },
-  addAmenity: async ({ id, amenity }) => {
+  addAmenity: async ({ id, amenity }, req) => {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized");
+    }
     const room = await Room.findById(id);
     room.amenities.push(amenity);
     room.save().then((result) => {
       return result;
     });
   },
-  deleteRoom: async ({ id }) => {
+  deleteRoom: async ({ id }, req) => {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized");
+    }
     const room = await Room.findByIdAndDelete(id);
     room.save().then((result) => {
       return result;
     });
   },
-  deleteSingleRule: async ({ id, ruleToDelete }) => {
+  deleteSingleRule: async ({ id, ruleToDelete }, req) => {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized");
+    }
     const room = await Room.findById(id);
     console.log(ruleToDelete);
     room.rules = room.rules.filter((rule) => rule !== ruleToDelete);
@@ -131,7 +152,10 @@ module.exports = {
       return result;
     });
   },
-  deleteSingleAmenity: async ({ id, amenityToDelete }) => {
+  deleteSingleAmenity: async ({ id, amenityToDelete }, req) => {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized");
+    }
     const room = await Room.findById(id);
     room.amenities = room.amenities.filter(
       (amenity) => amenity !== amenityToDelete
