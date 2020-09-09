@@ -30,7 +30,6 @@ exports.RoomInputData = `
         amenities: [String]
         rules: [String]
         personalID: String
-        image: String
     }
 `;
 
