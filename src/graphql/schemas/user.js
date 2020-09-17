@@ -1,6 +1,7 @@
 exports.User = `
     type User {
         id: ID!
+        uuid: String!
         email: String!
         username: String
         password: String
@@ -19,6 +20,7 @@ exports.UserInputData = `
         firstname: String
         lastname: String
         contact: String
+        uuid: String
     }
 `;
 
