@@ -105,9 +105,10 @@ module.exports = {
   getRoomById: async ({ id }, req) => {
     return await Room.findById(id).populate("owner");
   },
-  getRoomByOwner: async ({ uuid }, req) => {
-    const ownerId = await User.findOne({ uuid: uuid });
-    const rooms = await Room.find({ owner: ownerId }).populate("owner");
+  getRoomByOwner: async ({ ownerId }, req) => {
+    console.log(ownerId);
+    const owner = await User.findOne({ uuid: ownerId });
+    const rooms = await Room.find({ owner: owner }).populate("owner");
     return rooms;
   },
   addRule: async ({ id, rule }, req) => {
