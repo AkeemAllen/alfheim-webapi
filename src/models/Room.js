@@ -20,7 +20,7 @@ const roomSchema = new Schema({
   },
   owner: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: "G_User",
   },
   street: {
     type: String,

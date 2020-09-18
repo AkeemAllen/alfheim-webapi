@@ -1,10 +1,15 @@
 const Room = require("../../models/Room");
-const User = require("../../models/User");
+const User = require("../../models/G_User");
 
 module.exports = {
   createRoom: async ({ input }, req) => {
-    if (!req.isAuth) {
-      throw new Error("Unauthorized");
+    // if (!req.isAuth) {
+    //   throw new Error("Unauthorized");
+    // }
+
+    const user = await User.findOne({ uuid: input.uuid });
+    if (!user) {
+      throw new Error("User Not Found");
     }
 
     const room = new Room({
@@ -14,7 +19,7 @@ module.exports = {
       street: input.street,
       town_city: input.town_city,
       parish: input.parish,
-      owner: req.userId,
+      owner: user,
       amenities: input.amenities,
       rules: input.rules,
       personalID: input.personalID,
@@ -26,12 +31,6 @@ module.exports = {
       .save()
       .then((result) => {
         createdRoom = { ...result._doc, id: result._id };
-        return User.findById(req.userId);
-      })
-      .then((user) => {
-        if (!user) {
-          throw new Error("User non-existent");
-        }
         user.roomsOwned.push(room);
         return user.save();
       })
@@ -40,9 +39,9 @@ module.exports = {
       });
   },
   updateRoom: async ({ input, id }, req) => {
-    if (!req.isAuth) {
-      throw new Error("Unauthorized");
-    }
+    // if (!req.isAuth) {
+    //   throw new Error("Unauthorized");
+    // }
     const room = await Room.findById(id);
     if (!room) {
       throw new Error("Room Not Found");
@@ -71,9 +70,9 @@ module.exports = {
     }
   },
   updateAvailability: async ({ id, currentAvailability }, req) => {
-    if (!req.isAuth) {
-      throw new Error("Unauthorized");
-    }
+    // if (!req.isAuth) {
+    //   throw new Error("Unauthorized");
+    // }
     const room = await Room.findById(id);
     if (!room) {
       throw new Error("Room Not Found");
@@ -86,9 +85,9 @@ module.exports = {
     }
   },
   updateVisibility: async ({ id, currentVisibility }, req) => {
-    if (!req.isAuth) {
-      throw new Error("Unauthorized");
-    }
+    // if (!req.isAuth) {
+    //   throw new Error("Unauthorized");
+    // }
     const room = await Room.findById(id);
     if (!room) {
       throw new Error("Room Not Found");
@@ -106,14 +105,15 @@ module.exports = {
   getRoomById: async ({ id }, req) => {
     return await Room.findById(id).populate("owner");
   },
-  getRoomByOwner: async ({ ownerId }, req) => {
+  getRoomByOwner: async ({ uuid }, req) => {
+    const ownerId = await User.findOne({ uuid: uuid });
     const rooms = await Room.find({ owner: ownerId }).populate("owner");
     return rooms;
   },
   addRule: async ({ id, rule }, req) => {
-    if (!req.isAuth) {
-      throw new Error("Unauthorized");
-    }
+    // if (!req.isAuth) {
+    //   throw new Error("Unauthorized");
+    // }
     const room = await Room.findById(id);
     room.rules.push(rule);
     room.save().then((result) => {
@@ -121,9 +121,9 @@ module.exports = {
     });
   },
   addAmenity: async ({ id, amenity }, req) => {
-    if (!req.isAuth) {
-      throw new Error("Unauthorized");
-    }
+    // if (!req.isAuth) {
+    //   throw new Error("Unauthorized");
+    // }
     const room = await Room.findById(id);
     room.amenities.push(amenity);
     room.save().then((result) => {
@@ -131,18 +131,18 @@ module.exports = {
     });
   },
   deleteRoom: async ({ id }, req) => {
-    if (!req.isAuth) {
-      throw new Error("Unauthorized");
-    }
+    // if (!req.isAuth) {
+    //   throw new Error("Unauthorized");
+    // }
     const room = await Room.findByIdAndDelete(id);
     room.save().then((result) => {
       return result;
     });
   },
   deleteSingleRule: async ({ id, ruleToDelete }, req) => {
-    if (!req.isAuth) {
-      throw new Error("Unauthorized");
-    }
+    // if (!req.isAuth) {
+    //   throw new Error("Unauthorized");
+    // }
     const room = await Room.findById(id);
     console.log(ruleToDelete);
     room.rules = room.rules.filter((rule) => rule !== ruleToDelete);
@@ -153,9 +153,9 @@ module.exports = {
     });
   },
   deleteSingleAmenity: async ({ id, amenityToDelete }, req) => {
-    if (!req.isAuth) {
-      throw new Error("Unauthorized");
-    }
+    // if (!req.isAuth) {
+    //   throw new Error("Unauthorized");
+    // }
     const room = await Room.findById(id);
     room.amenities = room.amenities.filter(
       (amenity) => amenity !== amenityToDelete

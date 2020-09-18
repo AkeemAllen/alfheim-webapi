@@ -4,7 +4,7 @@ exports.Room = `
         occupancy: String!
         price: Int!
         gender: String!
-        owner: User!
+        owner: G_User!
         street: String!
         town_city: String!,
         parish: String!
@@ -30,13 +30,15 @@ exports.RoomInputData = `
         amenities: [String]
         rules: [String]
         personalID: String
+        uuid: String
+        image: String
     }
 `;
 
 exports.RoomQueries = `
     allRooms: [Room!]!
     getRoomById(id:ID!): Room!
-    getRoomByOwner(ownerId: ID!): [Room!]!
+    getRoomByOwner(ownerId: String!): [Room!]!
 `;
 
 exports.RoomMutations = `
