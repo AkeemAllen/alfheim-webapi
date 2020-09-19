@@ -106,7 +106,6 @@ module.exports = {
     return await Room.findById(id).populate("owner");
   },
   getRoomByOwner: async ({ ownerId }, req) => {
-    console.log(ownerId);
     const owner = await User.findOne({ uuid: ownerId });
     const rooms = await Room.find({ owner: owner }).populate("owner");
     return rooms;
@@ -145,11 +144,9 @@ module.exports = {
     //   throw new Error("Unauthorized");
     // }
     const room = await Room.findById(id);
-    console.log(ruleToDelete);
     room.rules = room.rules.filter((rule) => rule !== ruleToDelete);
 
     room.save().then((result) => {
-      console.log(result);
       return result;
     });
   },
