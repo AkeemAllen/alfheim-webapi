@@ -74,7 +74,7 @@ module.exports = {
     }
   },
   allRooms: async () => {
-    return await Room.find().populate("owner").populate("location");
+    return await Room.find().populate("owner");
   },
   getRoomById: async ({ id }, req) => {
     return await Room.findById(id).populate("owner");
