@@ -3,8 +3,7 @@ exports.G_User = `
         id: ID!
         uuid: String!
         roomsOwned: [Room!]
-        firstName: String!
-        lastName: String!
+        name: String!
         email: String!
         phoneNumber: String!
     }
@@ -13,8 +12,7 @@ exports.G_User = `
 exports.G_UserInputData = `
     input G_UserInputData {
         uuid: String!
-        firstName: String!
-        lastName: String!
+        name: String!
         email: String!
         phoneNumber: String!
     }

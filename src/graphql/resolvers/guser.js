@@ -9,8 +9,7 @@ module.exports = {
 
     const user = new User({
       uuid: input.uuid,
-      firstName: input.firstName,
-      lastName: input.lastName,
+      name: input.name,
       email: input.email,
       phoneNumber: input.phoneNumber,
     });
