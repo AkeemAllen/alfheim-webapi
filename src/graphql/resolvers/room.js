@@ -1,5 +1,6 @@
 const Room = require("../../models/Room");
 const User = require("../../models/G_User");
+const DateConverter = require("dateconverter");
 
 module.exports = {
   createRoom: async ({ input }, req) => {
@@ -12,12 +13,17 @@ module.exports = {
       throw new Error("User Not Found");
     }
 
+    const splitDate = input.expirationDate.split("/");
+    const expiry = new Date(`${splitDate[2]} ${splitDate[0]} ${splitDate[1]}`);
     const room = new Room({
       price: input.price,
       location: input.location,
       owner: user,
       description: input.description,
+      expirationDate: expiry.toISOString(),
     });
+
+    room.createdAt.expires = room.expirationDate;
 
     let createdRoom;
 
@@ -52,6 +58,9 @@ module.exports = {
         ? (room.description = input.description)
         : null;
       input.image !== undefined ? (room.image = input.image) : null;
+      input.expirationDate !== undefined
+        ? (room.expirationDate = input.expirationDate)
+        : null;
 
       return room.save();
     } catch (error) {
