@@ -7,6 +7,7 @@ exports.Room = `
         isAvailable: Boolean!
         description: String!
         expirationDate: String!
+        contact: String!
         image: String
     }
 `;
@@ -19,6 +20,7 @@ exports.RoomInputData = `
         description: String
         uuid: String
         expirationDate: String
+        contact: String
         image: String
     }
 `;

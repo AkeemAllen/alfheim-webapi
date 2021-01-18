@@ -28,6 +28,10 @@ const roomSchema = new Schema({
     required: false,
     default: null,
   },
+  contact: {
+    type: String,
+    required: true,
+  },
   expirationDate: {
     type: Date,
     expires: 0,

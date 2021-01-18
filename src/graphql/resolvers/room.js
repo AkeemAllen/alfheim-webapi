@@ -21,6 +21,7 @@ module.exports = {
       owner: user,
       description: input.description,
       expirationDate: expiry.toISOString(),
+      contact: input.contact,
     });
 
     room.createdAt.expires = room.expirationDate;
@@ -58,6 +59,7 @@ module.exports = {
         ? (room.description = input.description)
         : null;
       input.image !== undefined ? (room.image = input.image) : null;
+      input.contact !== undefined ? (room.contact = input.contact) : null;
       input.expirationDate !== undefined
         ? (room.expirationDate = input.expirationDate)
         : null;
