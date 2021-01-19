@@ -1,7 +1,7 @@
 exports.Room = `
     type Room {
         id: ID!
-        price: Int!
+        price: String!
         owner: G_User!
         location: String!
         isAvailable: Boolean!
@@ -14,7 +14,7 @@ exports.Room = `
 
 exports.RoomInputData = `
     input RoomInputData {
-        price: Int
+        price: String
         location: String
         isAvailable: Boolean
         description: String

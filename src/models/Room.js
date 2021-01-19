@@ -7,7 +7,7 @@ const roomSchema = new Schema({
     required: true,
   },
   price: {
-    type: Number,
+    type: String,
     required: false,
   },
   owner: {
