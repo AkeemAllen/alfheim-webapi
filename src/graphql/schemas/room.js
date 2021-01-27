@@ -29,6 +29,7 @@ exports.RoomQueries = `
     allRooms: [Room!]!
     getRoomById(id:ID!): Room!
     getRoomByOwner(ownerId: String!): [Room!]!
+    getRoomByDescription(description: String!): Room!
 `;
 
 exports.RoomMutations = `

@@ -104,4 +104,10 @@ module.exports = {
       return result;
     });
   },
+  getRoomByDescription: async ({ description }, req) => {
+    const room = await Room.findOne({ description: description });
+    if (!room) {
+      throw new Error("Room Not Found");
+    }
+  },
 };
