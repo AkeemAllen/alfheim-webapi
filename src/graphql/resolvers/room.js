@@ -109,5 +109,7 @@ module.exports = {
     if (!room) {
       throw new Error("Room Not Found");
     }
+
+    return room;
   },
 };
