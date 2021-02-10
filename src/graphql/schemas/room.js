@@ -9,6 +9,7 @@ exports.Room = `
         expirationDate: String!
         contact: String!
         image: String
+        urlHash: String
     }
 `;
 
@@ -22,6 +23,7 @@ exports.RoomInputData = `
         expirationDate: String
         contact: String
         image: String
+        urlHash: String
     }
 `;
 

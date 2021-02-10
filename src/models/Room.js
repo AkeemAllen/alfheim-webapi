@@ -36,6 +36,10 @@ const roomSchema = new Schema({
     type: Date,
     expires: 0,
   },
+  urlHash: {
+    type: String,
+    required: false,
+  },
   createdAt: {
     type: Date,
     default: Date.now(),

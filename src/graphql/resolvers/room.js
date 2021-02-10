@@ -22,6 +22,7 @@ module.exports = {
       description: input.description,
       expirationDate: expiry.toISOString(),
       contact: input.contact,
+      urlHash: input.urlHash,
     });
 
     room.createdAt.expires = room.expirationDate;
