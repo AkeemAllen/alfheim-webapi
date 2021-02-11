@@ -36,7 +36,7 @@ const roomSchema = new Schema({
     type: Date,
     expires: 0,
   },
-  urlHash: {
+  uniqueHash: {
     type: String,
     required: false,
   },
