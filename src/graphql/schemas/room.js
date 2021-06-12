@@ -3,10 +3,10 @@ exports.Room = `
         id: ID!
         price: Int!
         owner: User!
-        street: String!
-        town_city: String!,
+        street: String
+        town_city: String,
         parish: String!
-        isAvailable: Boolean!
+        isAvailable: Boolean
         description: String!
         personalID: String
         image: String
