@@ -1,12 +1,15 @@
 const Room = require("../../models/Room");
-const User = require("../../models/G_User");
+const User = require("../../models/User");
 
 module.exports = {
   createRoom: async ({ input }, req) => {
     // if (!req.isAuth) {
     //   throw new Error("Unauthorized");
     // }
-
+    const user = await User.findById(req.userId);
+    if (!user) {
+      throw new Error("User non-existent");
+    }
     const room = new Room({
       price: input.price,
       street: input.street,
@@ -76,7 +79,7 @@ module.exports = {
     }
   },
   allRooms: async () => {
-    return await Room.find().populate("owner").populate("location");
+    return await Room.find().populate("owner");
   },
   getRoomById: async ({ id }, req) => {
     return await Room.findById(id).populate("owner");
