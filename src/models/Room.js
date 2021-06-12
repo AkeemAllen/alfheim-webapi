@@ -6,16 +6,8 @@ const roomSchema = new Schema({
     type: String,
     required: true,
   },
-  occupancy: {
-    type: String,
-    required: false,
-  },
   price: {
     type: Number,
-    required: false,
-  },
-  gender: {
-    type: String,
     required: false,
   },
   owner: {
@@ -31,11 +23,6 @@ const roomSchema = new Schema({
     required: true,
     default: false,
   },
-  isVisible: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
   town_city: {
     type: String,
     required: false,
@@ -44,8 +31,6 @@ const roomSchema = new Schema({
     type: String,
     required: false,
   },
-  amenities: [String],
-  rules: [String],
   image: {
     type: String,
     required: false,
