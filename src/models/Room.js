@@ -27,6 +27,10 @@ const roomSchema = new Schema({
     type: String,
     required: false,
   },
+  description: {
+    type: String,
+    required: false,
+  },
   parish: {
     type: String,
     required: false,
