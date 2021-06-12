@@ -8,15 +8,11 @@ module.exports = {
     }
 
     const room = new Room({
-      occupancy: input.occupancy,
-      gender: input.gender,
       price: input.price,
       street: input.street,
       town_city: input.town_city,
       parish: input.parish,
       owner: req.userId,
-      amenities: input.amenities,
-      rules: input.rules,
       personalID: input.personalID,
     });
 
@@ -46,8 +42,6 @@ module.exports = {
     }
 
     try {
-      input.occupancy !== undefined ? (room.occupancy = input.occupancy) : null;
-      input.gender !== undefined ? (room.gender = input.gender) : null;
       input.price !== undefined ? (room.price = input.price) : null;
       input.street !== undefined ? (room.street = input.street) : null;
       input.town_city !== undefined ? (room.town_city = input.town_city) : null;
@@ -55,11 +49,9 @@ module.exports = {
       input.isAvailable !== undefined
         ? (room.isAvailable = input.isAvailable)
         : null;
-      input.isVisible !== undefined ? (room.isVisible = input.isVisible) : null;
       input.personalID !== undefined
         ? (room.personalID = input.personalID)
         : null;
-      input.rules !== undefined ? (room.rules = input.rules) : null;
       input.image !== undefined ? (room.image = input.image) : null;
 
       return room.save();
@@ -79,18 +71,6 @@ module.exports = {
       throw new Error("Could not be updated");
     }
   },
-  updateVisibility: async ({ id, currentVisibility }) => {
-    const room = await Room.findById(id);
-    if (!room) {
-      throw new Error("Room Not Found");
-    }
-    try {
-      room.isVisible = !currentVisibility;
-      return room.save();
-    } catch (error) {
-      throw new Error("Could not be updated");
-    }
-  },
   allRooms: async () => {
     return await Room.find().populate("owner").populate("location");
   },
@@ -101,41 +81,8 @@ module.exports = {
     const rooms = await Room.find({ owner: ownerId }).populate("owner");
     return rooms;
   },
-  addRule: async ({ id, rule }) => {
-    const room = await Room.findById(id);
-    room.rules.push(rule);
-    room.save().then((result) => {
-      return result;
-    });
-  },
-  addAmenity: async ({ id, amenity }) => {
-    const room = await Room.findById(id);
-    room.amenities.push(amenity);
-    room.save().then((result) => {
-      return result;
-    });
-  },
   deleteRoom: async ({ id }) => {
     const room = await Room.findByIdAndDelete(id);
-    room.save().then((result) => {
-      return result;
-    });
-  },
-  deleteSingleRule: async ({ id, ruleToDelete }) => {
-    const room = await Room.findById(id);
-    console.log(ruleToDelete);
-    room.rules = room.rules.filter((rule) => rule !== ruleToDelete);
-
-    room.save().then((result) => {
-      console.log(result);
-      return result;
-    });
-  },
-  deleteSingleAmenity: async ({ id, amenityToDelete }) => {
-    const room = await Room.findById(id);
-    room.amenities = room.amenities.filter(
-      (amenity) => amenity !== amenityToDelete
-    );
     room.save().then((result) => {
       return result;
     });
