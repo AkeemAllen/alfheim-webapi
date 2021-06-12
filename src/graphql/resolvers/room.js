@@ -14,6 +14,7 @@ module.exports = {
       parish: input.parish,
       owner: req.userId,
       personalID: input.personalID,
+      description: input.description,
     });
 
     let createdRoom;
@@ -46,6 +47,9 @@ module.exports = {
       input.street !== undefined ? (room.street = input.street) : null;
       input.town_city !== undefined ? (room.town_city = input.town_city) : null;
       input.parish !== undefined ? (room.parish = input.parish) : null;
+      input.description !== undefined
+        ? (room.description = input.description)
+        : null;
       input.isAvailable !== undefined
         ? (room.isAvailable = input.isAvailable)
         : null;
