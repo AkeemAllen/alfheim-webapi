@@ -10,10 +10,6 @@ const roomSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  location: {
-    type: String,
-    required: true,
-  },
   town_city: {
     type: String,
     required: false,
