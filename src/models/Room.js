@@ -2,41 +2,32 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const roomSchema = new Schema({
-  description: {
-    type: String,
-    required: true,
-  },
   price: {
-    type: String,
+    type: Number,
     required: false,
   },
   owner: {
     type: Schema.Types.ObjectId,
-    ref: "G_User",
+    ref: "User",
   },
   location: {
     type: String,
     required: true,
   },
-  isAvailable: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-  image: {
+  town_city: {
     type: String,
     required: false,
     default: null,
   },
-  contact: {
+  description: {
+    type: String,
+    required: false,
+  },
+  parish: {
     type: String,
     required: true,
   },
-  expirationDate: {
-    type: Date,
-    expires: 0,
-  },
-  uniqueHash: {
+  image: {
     type: String,
     required: false,
   },

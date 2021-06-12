@@ -1,29 +1,28 @@
 exports.Room = `
     type Room {
         id: ID!
-        price: String!
-        owner: G_User!
-        location: String!
+        price: Int!
+        owner: User!
+        street: String!
+        town_city: String!,
+        parish: String!
         isAvailable: Boolean!
         description: String!
-        expirationDate: String!
-        contact: String!
+        personalID: String!
         image: String
-        uniqueHash: String
     }
 `;
 
 exports.RoomInputData = `
     input RoomInputData {
-        price: String
-        location: String
+        price: Int!
+        street: String
+        town_city: String
+        parish: String!
         isAvailable: Boolean
-        description: String
-        uuid: String
-        expirationDate: String
-        contact: String
+        description: String!
+        personalID: String
         image: String
-        uniqueHash: String
     }
 `;
 
@@ -31,7 +30,6 @@ exports.RoomQueries = `
     allRooms: [Room!]!
     getRoomById(id:ID!): Room!
     getRoomByOwner(ownerId: String!): [Room!]!
-    getRoomByDescription(description: String!): Room
 `;
 
 exports.RoomMutations = `

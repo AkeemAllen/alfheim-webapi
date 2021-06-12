@@ -1,28 +1,23 @@
 const Room = require("../../models/Room");
-const User = require("../../models/G_User");
-const DateConverter = require("dateconverter");
+const User = require("../../models/User");
 
 module.exports = {
   createRoom: async ({ input }, req) => {
     // if (!req.isAuth) {
     //   throw new Error("Unauthorized");
     // }
-
-    const user = await User.findOne({ uuid: input.uuid });
+    const user = await User.findById(req.userId);
     if (!user) {
-      throw new Error("User Not Found");
+      throw new Error("User non-existent");
     }
-
-    const splitDate = input.expirationDate.split("/");
-    const expiry = new Date(`${splitDate[2]} ${splitDate[0]} ${splitDate[1]}`);
     const room = new Room({
       price: input.price,
-      location: input.location,
-      owner: user,
+      street: input.street,
+      town_city: input.town_city,
+      parish: input.parish,
+      owner: req.userId,
+      personalID: input.personalID,
       description: input.description,
-      expirationDate: expiry.toISOString(),
-      contact: input.contact,
-      uniqueHash: input.uniqueHash,
     });
 
     room.createdAt.expires = room.expirationDate;
@@ -51,19 +46,20 @@ module.exports = {
 
     try {
       input.price !== undefined ? (room.price = input.price) : null;
-      input.location !== undefined ? (room.location = input.location) : null;
-      input.isAvailable !== undefined
-        ? (room.isAvailable = input.isAvailable)
-        : null;
-      input.isVisible !== undefined ? (room.isVisible = input.isVisible) : null;
+      input.street !== undefined ? (room.street = input.street) : null;
+      input.town_city !== undefined ? (room.town_city = input.town_city) : null;
+      input.parish !== undefined ? (room.parish = input.parish) : null;
       input.description !== undefined
         ? (room.description = input.description)
         : null;
+      input.isAvailable !== undefined
+        ? (room.isAvailable = input.isAvailable)
+        : null;
+      input.personalID !== undefined
+        ? (room.personalID = input.personalID)
+        : null;
       input.image !== undefined ? (room.image = input.image) : null;
       input.contact !== undefined ? (room.contact = input.contact) : null;
-      input.expirationDate !== undefined
-        ? (room.expirationDate = input.expirationDate)
-        : null;
 
       return room.save();
     } catch (error) {
@@ -96,21 +92,10 @@ module.exports = {
     const rooms = await Room.find({ owner: owner }).populate("owner");
     return rooms;
   },
-  deleteRoom: async ({ id }, req) => {
-    // if (!req.isAuth) {
-    //   throw new Error("Unauthorized");
-    // }
+  deleteRoom: async ({ id }) => {
     const room = await Room.findByIdAndDelete(id);
     room.save().then((result) => {
       return result;
     });
-  },
-  getRoomByDescription: async ({ description }, req) => {
-    const room = await Room.findOne({ description: description });
-    if (!room) {
-      throw new Error("Room Not Found");
-    }
-
-    return room;
   },
 };
