@@ -15,12 +15,12 @@ exports.Room = `
 
 exports.RoomInputData = `
     input RoomInputData {
-        price: Int
+        price: Int!
         street: String
         town_city: String
-        parish: String
+        parish: String!
         isAvailable: Boolean
-        description: String
+        description: String!
         personalID: String
         image: String
     }

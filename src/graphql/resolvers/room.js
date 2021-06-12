@@ -3,9 +3,9 @@ const User = require("../../models/User");
 
 module.exports = {
   createRoom: async ({ input }, req) => {
-    if (!req.isAuth) {
-      throw new Error("Unauthorized");
-    }
+    // if (!req.isAuth) {
+    //   throw new Error("Unauthorized");
+    // }
 
     const room = new Room({
       price: input.price,
