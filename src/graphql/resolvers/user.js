@@ -63,6 +63,9 @@ module.exports = {
       });
   },
   updateUser: async ({ userInput }, req) => {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized");
+    }
     const user = await User.findOne({ email: userInput.email });
     if (!user) {
       throw new Error("User Not Found");

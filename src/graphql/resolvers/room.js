@@ -1,5 +1,5 @@
 const Room = require("../../models/Room");
-const User = require("../../models/User");
+const User = require("../../models/G_User");
 
 module.exports = {
   createRoom: async ({ input }, req) => {
@@ -23,12 +23,6 @@ module.exports = {
       .save()
       .then((result) => {
         createdRoom = { ...result._doc, id: result._id };
-        return User.findById(req.userId);
-      })
-      .then((user) => {
-        if (!user) {
-          throw new Error("User non-existent");
-        }
         user.roomsOwned.push(room);
         return user.save();
       })
@@ -36,7 +30,10 @@ module.exports = {
         return createdRoom;
       });
   },
-  updateRoom: async ({ input, id }) => {
+  updateRoom: async ({ input, id }, req) => {
+    // if (!req.isAuth) {
+    //   throw new Error("Unauthorized");
+    // }
     const room = await Room.findById(id);
     if (!room) {
       throw new Error("Room Not Found");
@@ -63,7 +60,10 @@ module.exports = {
       throw new Error(error);
     }
   },
-  updateAvailability: async ({ id, currentAvailability }) => {
+  updateAvailability: async ({ id, currentAvailability }, req) => {
+    // if (!req.isAuth) {
+    //   throw new Error("Unauthorized");
+    // }
     const room = await Room.findById(id);
     if (!room) {
       throw new Error("Room Not Found");
@@ -82,7 +82,8 @@ module.exports = {
     return await Room.findById(id).populate("owner");
   },
   getRoomByOwner: async ({ ownerId }, req) => {
-    const rooms = await Room.find({ owner: ownerId }).populate("owner");
+    const owner = await User.findOne({ uuid: ownerId });
+    const rooms = await Room.find({ owner: owner }).populate("owner");
     return rooms;
   },
   deleteRoom: async ({ id }) => {
