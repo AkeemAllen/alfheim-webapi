@@ -8,7 +8,7 @@ exports.Room = `
         parish: String!
         isAvailable: Boolean!
         description: String!
-        personalID: String!
+        personalID: String
         image: String
     }
 `;
