@@ -34,22 +34,22 @@ module.exports = {
         token.save(async (err) => {
           if (err) throw new Error("Token Not Saved");
 
-          sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+          // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-          const mailOptions = {
-            to: result.email,
-            from: "allenakeem8@gmail.com",
-            subject: "Account Verification Token",
-            text:
-              "Hello,\n\n" +
-              "Please verify your account by clicking the link: \nhttp://" +
-              req.headers.host +
-              "/confirmation?" +
-              "token=" +
-              token.token,
-          };
+          // const mailOptions = {
+          //   to: result.email,
+          //   from: "allenakeem8@gmail.com",
+          //   subject: "Account Verification Token",
+          //   text:
+          //     "Hello,\n\n" +
+          //     "Please verify your account by clicking the link: \nhttp://" +
+          //     req.headers.host +
+          //     "/confirmation?" +
+          //     "token=" +
+          //     token.token,
+          // };
 
-          sgMail.send(mailOptions);
+          // sgMail.send(mailOptions);
         });
 
         return {
